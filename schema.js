@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-// const {promisify} = require('util');
 const Promise = require('bluebird');
 const {
 	GraphQLObjectType,
@@ -8,7 +7,6 @@ const {
 	GraphQLString,
 	GraphQLList
 } = require('graphql');
-// console.log(util, 'is util ')
 
 const parseXml = Promise.promisify(require('xml2js').parseString);
 fetch(
@@ -39,7 +37,6 @@ const AuthorType = new GraphQLObjectType({
 		name: {
 			type: GraphQLString,
 			resolve: xml => (
-				// console.log(xml.GoodreadsResponse.author[0].name[0])
 				xml.GoodreadsResponse.author[0].name[0]
 			)
 		},
@@ -49,6 +46,7 @@ const AuthorType = new GraphQLObjectType({
 		}
 	})
 })
+
 //Schema
 module.exports = new GraphQLSchema({
 	query: new GraphQLObjectType({
